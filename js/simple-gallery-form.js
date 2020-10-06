@@ -27,9 +27,9 @@ class SimpleGalleryManagerSelect {
             });
         });
 
-    };
-
-    _loadFileDetails(fID, thumbnailTemplate) {
+    }
+    ;
+            _loadFileDetails(fID, thumbnailTemplate) {
         var $container = $("#ccm-gallery-dnd-sortable");
         var preloader = '<div class="col-sm-3">';
         preloader += '<div class="pre-loader"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></div>';
@@ -55,7 +55,7 @@ class SimpleGalleryManagerSelect {
                     $newLine.replaceWith(thumbnailTemplate({file: fileParam}));
                     $newLine = $container.find('.ccm-gallery-dnd-im-container').eq($newLine.index());
                     $newLine.find('img').removeClass('ccm-file-manager-list-thumbnail')
-                        .addClass('ccm-gallery-dnd-im img-rounded');
+                            .addClass('ccm-gallery-dnd-im img-rounded');
 
                     if ($newLine.find('.fTitle').val().trim() == "") {
                         $newLine.find('.fTitle').val(file.ftitle);
@@ -77,18 +77,18 @@ class SimpleGalleryManagerSelect {
                 }
             }
         });
-    };
-
-    _setupDeleteImageAction() {
+    }
+    ;
+            _setupDeleteImageAction() {
         $('#file-location-upl').on('click', '.ccm-gallery-dnd-im-delete', function (e) {
             e.preventDefault();
             $(this).closest('.ccm-gallery-dnd-im-container').fadeOut(500, function () {
                 $(this).remove();
             });
         });
-    };
-
-    _setupEditPropertiesButton() {
+    }
+    ;
+            _setupEditPropertiesButton() {
         $('#file-location-upl').on('click', '.ccm-gallery-dnd-im-edit', function (e) {
             e.preventDefault();
             var $container = $(this).closest('.ccm-gallery-dnd-im-container');
@@ -118,8 +118,8 @@ class SimpleGalleryManagerSelect {
                 }
             });
         });
-    };
-
+    }
+    ;
 }
 
 $(function () {

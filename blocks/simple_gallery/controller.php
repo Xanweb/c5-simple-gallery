@@ -1,4 +1,6 @@
-<?php namespace Concrete\Package\SimpleGallery\Block\SimpleGallery;
+<?php
+
+namespace Concrete\Package\SimpleGallery\Block\SimpleGallery;
 
 defined('C5_EXECUTE') or die('Access Denied.');
 
@@ -16,8 +18,8 @@ use Database;
 use Concrete\Core\File\Image\Thumbnail\Type\Version as ThumbnailTypeVersion;
 use HtmlObject\Image as HtmlImage;
 
-class Controller extends BlockController
-{
+class Controller extends BlockController {
+
     protected $btTable = 'btSimpleGallery';
     protected $btExportTables = ['btSimpleGallery'];
     protected $btInterfaceWidth = '800';
@@ -28,30 +30,24 @@ class Controller extends BlockController
     protected $btCacheBlockOutputOnPost = false;
     protected $btCacheBlockOutputForRegisteredUsers = false;
     protected $btCacheBlockOutputLifetime = 0;
-
     protected $btDefaultSet = 'multimedia'; // basic, navigation, form, express, social, multimedia
-
     private $uniqueID;
 
-    public function getBlockTypeName()
-    {
+    public function getBlockTypeName() {
         return t('Simple Gallery');
     }
 
-    public function getBlockTypeDescription()
-    {
+    public function getBlockTypeDescription() {
         return t('Create image gallery based on File Set.');
     }
 
-    public function getSearchableContent()
-    {
+    public function getSearchableContent() {
         $content = [];
 
         return implode(' ', $content);
     }
 
-    public function on_start()
-    {
+    public function on_start() {
         // Unique identifier
         $this->uniqueID = $this->app->make('helper/validation/identifier')->getString(18);
         $this->set('uniqueID', $this->uniqueID);
@@ -103,8 +99,7 @@ class Controller extends BlockController
         $this->set('selector', $selector);
     }
 
-    public function registerViewAssets($outputContent = '')
-    {
+    public function registerViewAssets($outputContent = '') {
         // Localization (we can't just register "javascript-localized" because it breaks combined css in half, when cache is on)
         $sgi18n = [];
         $sgi18n['imageNotLoaded'] = t('%sThe image%s could not be loaded.', '<a href=\"%url%\">', '</a>');
@@ -129,8 +124,7 @@ class Controller extends BlockController
         }
     }
 
-    public function add()
-    {
+    public function add() {
         $this->set('columnsPhone', $this->columnsPhone ?: 2);
         $this->set('columnsTablet', $this->columnsTablet ?: 3);
         $this->set('columnsDesktop', $this->columnsDesktop ?: 4);
@@ -141,8 +135,7 @@ class Controller extends BlockController
         $this->edit();
     }
 
-    public function edit()
-    {
+    public function edit() {
         // Require Edit mode assets
         $this->includeEditModeAssets();
 
@@ -168,6 +161,7 @@ class Controller extends BlockController
                                     $fv->generateThumbnail($fileManagerDetailThumb);
                                 }
                             } catch (\Exception $e) {
+                                
                             }
                             $obj->thumb = HtmlImage::create($thumbnailPath);
                         }
@@ -192,14 +186,12 @@ class Controller extends BlockController
         $this->set('app', $this->app);
     }
 
-    public function includeEditModeAssets()
-    {
+    public function includeEditModeAssets() {
         $this->requireAsset('core/file-manager');
         $this->requireAsset('simple-gallery/block');
     }
 
-    public function view()
-    {
+    public function view() {
         $title = '';
         if (!empty($this->title)) {
             $title = '<h' . $this->titleSize . '>' . $this->title . '</h' . $this->titleSize . '>';
@@ -211,8 +203,7 @@ class Controller extends BlockController
         $this->set('title', $title);
     }
 
-    public function save($args)
-    {
+    public function save($args) {
         // Basic fields
         $args['customCaption'] = trim($args['customCaption']);
 
@@ -243,30 +234,29 @@ class Controller extends BlockController
         parent::save($args);
     }
 
-    public function saveFileManagerEntries($args)
-    {
+    public function saveFileManagerEntries($args) {
         $db = $this->app->make('database/connection');
         $queryBuilder = $db->createQueryBuilder($args);
         $queryBuilder->delete('btSimpleGalleryFileManagerEntries')
-            ->where($queryBuilder->expr()->eq('bID', ':bID'))
-            ->setParameter('bID', $this->bID)->execute();
+                ->where($queryBuilder->expr()->eq('bID', ':bID'))
+                ->setParameter('bID', $this->bID)->execute();
 
         if (isset($args['files'])) {
             $count = count($args['files']);
             $i = 0;
 
             $queryBuilder = $db->createQueryBuilder()
-                ->insert('btSimpleGalleryFileManagerEntries')
-                ->values([
-                    'bID' => ':bID',
-                    'fID' => ':fID',
-                    'altText' => ':altText',
-                    'ftitle' => ':ftitle',
-                    'caption' => ':caption',
-                    'copyright' => ':copyright',
-                    'showCopyright' => ':showCopyright',
-                    'sortOrder' => ':sortOrder',
-                ]);
+                    ->insert('btSimpleGalleryFileManagerEntries')
+                    ->values([
+                'bID' => ':bID',
+                'fID' => ':fID',
+                'altText' => ':altText',
+                'ftitle' => ':ftitle',
+                'caption' => ':caption',
+                'copyright' => ':copyright',
+                'showCopyright' => ':showCopyright',
+                'sortOrder' => ':sortOrder',
+            ]);
 
             $em = \ORM::entityManager();
             while ($i < $count) {
@@ -292,8 +282,7 @@ class Controller extends BlockController
         }
     }
 
-    public function duplicate($newBlockID)
-    {
+    public function duplicate($newBlockID) {
         parent::duplicate($newBlockID);
         $db = $this->app->make('database/connection');
         $row = $db->GetRow('select fileLocation from btSimpleGallery where bID = ?', $this->bID);
@@ -321,20 +310,18 @@ class Controller extends BlockController
         }
     }
 
-    public function delete()
-    {
+    public function delete() {
         $db = $this->app->make('database/connection');
         $row = $db->GetRow('select fileLocation from btSimpleGallery where bID = ?', $this->bID);
         if (isset($row['fileLocation']) && $row['fileLocation'] == 'upl') {
             $queryBuilder = $db->createQueryBuilder();
             $queryBuilder->delete('btSimpleGalleryFileManagerEntries')->where($queryBuilder->expr()->eq('bID', ':bID'))
-                ->setParameter('bID', $this->bID)->execute();
+                    ->setParameter('bID', $this->bID)->execute();
         }
         parent::delete();
     }
 
-    public function validate($args)
-    {
+    public function validate($args) {
         $error = $this->app->make('helper/validation/error');
 
         // Required fields
@@ -357,19 +344,18 @@ class Controller extends BlockController
             }
         }
 
-        if (!empty($args['thumbnailCrop']) and (empty($args['thumbnailWidth']) or empty($args['thumbnailHeight']))) {
+        if (!empty($args['thumbnailCrop']) and ( empty($args['thumbnailWidth']) or empty($args['thumbnailHeight']))) {
             $error->add(t('To crop Thumbnails you need to specify width and height.'));
         }
 
-        if (!empty($args['fullscreenCrop']) and (empty($args['fullscreenWidth']) or empty($args['fullscreenHeight']))) {
+        if (!empty($args['fullscreenCrop']) and ( empty($args['fullscreenWidth']) or empty($args['fullscreenHeight']))) {
             $error->add(t('To crop Fullscreen Images you need to specify width and height.'));
         }
 
         return $error;
     }
 
-    public function composer()
-    {
+    public function composer() {
         $al = AssetList::getInstance();
         $al->register('javascript', 'simple-gallery/auto-js', 'blocks/simple_gallery/auto.js', [], 'simple_gallery');
         $this->requireAsset('javascript', 'simple-gallery/auto-js');
@@ -377,13 +363,11 @@ class Controller extends BlockController
         $this->edit();
     }
 
-    public function scrapbook()
-    {
+    public function scrapbook() {
         $this->edit();
     }
 
-    private function getFileSets()
-    {
+    private function getFileSets() {
         $fileSetList = new FileSetList();
         $fileSets = $fileSetList->get();
 
@@ -396,8 +380,7 @@ class Controller extends BlockController
         return $fileSetsArray;
     }
 
-    private function getImages($fileLocation, $filesetID, $fileFolderID)
-    {
+    private function getImages($fileLocation, $filesetID, $fileFolderID) {
         $images = [];
         if ($fileLocation == 'set' && $filesetID != 0) {
             $fileSet = FileSet::getByID($filesetID);
@@ -437,8 +420,7 @@ class Controller extends BlockController
         return $images;
     }
 
-    private function processImages($location, array $images)
-    {
+    private function processImages($location, array $images) {
         $ih = $this->app->make('helper/image');
 
         $c = Page::getCurrentPage();
@@ -457,7 +439,7 @@ class Controller extends BlockController
                 $thumbnailWidth = $image->getAttribute('width');
                 $thumbnailHeight = $image->getAttribute('height');
 
-                if (($this->thumbnailWidth or $this->thumbnailHeight) and ($thumbnailWidth > $this->thumbnailWidth or $thumbnailHeight > $this->thumbnailHeight)) {
+                if (($this->thumbnailWidth or $this->thumbnailHeight) and ( $thumbnailWidth > $this->thumbnailWidth or $thumbnailHeight > $this->thumbnailHeight)) {
                     $thumbnailObject = File::getByID($image->getFileID());
                     if (is_object($thumbnailObject) and $thumbnailObject->canEdit()) {
                         $thumbnail = $ih->getThumbnail($thumbnailObject, $this->thumbnailWidth, $this->thumbnailHeight, $this->thumbnailCrop);
@@ -476,7 +458,7 @@ class Controller extends BlockController
                 $fullscreenWidth = $image->getAttribute('width');
                 $fullscreenHeight = $image->getAttribute('height');
 
-                if (($this->fullscreenWidth or $this->fullscreenHeight) and ($fullscreenWidth > $this->fullscreenWidth or $fullscreenHeight > $this->fullscreenHeight)) {
+                if (($this->fullscreenWidth or $this->fullscreenHeight) and ( $fullscreenWidth > $this->fullscreenWidth or $fullscreenHeight > $this->fullscreenHeight)) {
                     $fullscreenObject = File::getByID($image->getFileID());
                     if (is_object($fullscreenObject) and $fullscreenObject->canEdit()) {
                         $fullscreen = $ih->getThumbnail($fullscreenObject, $this->fullscreenWidth, $this->fullscreenHeight, $this->fullscreenCrop);
@@ -526,8 +508,7 @@ class Controller extends BlockController
         return $imagesNewArray;
     }
 
-    public function getFileManagerImages()
-    {
+    public function getFileManagerImages() {
         $entries = $this->getEntries();
         $files = [];
 
@@ -545,8 +526,7 @@ class Controller extends BlockController
         return $files;
     }
 
-    public function getEntries($sort = true)
-    {
+    public function getEntries($sort = true) {
         $db = Database::connection();
         $qb = $db->createQueryBuilder()->select('*')->from('btSimpleGalleryFileManagerEntries');
         $qb->where($qb->expr()->eq('bID', ':bID'))->setParameter('bID', $this->bID);
@@ -558,13 +538,12 @@ class Controller extends BlockController
         return $qb->execute()->fetchAll();
     }
 
-    private function renderCss()
-    {
+    private function renderCss() {
         $uniqueParentContainer = '.sg-' . $this->bID;
         $css = '';
         if (is_object($this->block) && ($this->block->getBlockFilename() != 'masonry.php')) {
             // columnsPhone
-            if ($this->columnsPhone and $this->margin and ($this->columnsPhone != 2 or $this->margin != 5)) {
+            if ($this->columnsPhone and $this->margin and ( $this->columnsPhone != 2 or $this->margin != 5)) {
                 $css .= '@media only screen and (max-width: 575px) {';
                 $css .= '.ccm-page ' . $uniqueParentContainer . ' {';
                 $css .= 'columns: ' . $this->columnsPhone . ';';
@@ -573,7 +552,7 @@ class Controller extends BlockController
             }
 
             // columnsTablet
-            if ($this->columnsTablet and $this->margin and ($this->columnsTablet != 3 or $this->margin != 5)) {
+            if ($this->columnsTablet and $this->margin and ( $this->columnsTablet != 3 or $this->margin != 5)) {
                 $css .= '@media only screen and (min-width: 576px) and (max-width: 991px) {';
                 $css .= '.ccm-page ' . $uniqueParentContainer . ' {';
                 $css .= 'columns: ' . $this->columnsTablet . ';';
@@ -582,7 +561,7 @@ class Controller extends BlockController
             }
 
             // columnsDesktop
-            if ($this->columnsDesktop and $this->margin and ($this->columnsDesktop != 4 or $this->margin != 5)) {
+            if ($this->columnsDesktop and $this->margin and ( $this->columnsDesktop != 4 or $this->margin != 5)) {
                 $css .= '@media only screen and (min-width: 992px) {';
                 $css .= '.ccm-page ' . $uniqueParentContainer . ' {';
                 $css .= 'columns: ' . $this->columnsDesktop . ';';
@@ -610,7 +589,6 @@ class Controller extends BlockController
             }
         } else {
             // 1. Number of columns
-
             // columnsPhone
             if ($this->columnsPhone and $this->margin) {
                 $css .= '@media only screen and (max-width: 575px) {';
@@ -650,4 +628,5 @@ class Controller extends BlockController
 
         return $css;
     }
+
 }
