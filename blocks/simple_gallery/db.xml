@@ -2,16 +2,26 @@
 <schema version="0.3">
 
     <table name="btSimpleGallery">
-
         <field name="bID" type="I">
             <key/>
             <unsigned/>
         </field>
-
+        <field name="title" type="C" size="255"/>
+        <field name="titleSize" type="I">
+            <default value="0"/>
+        </field>
+        <field name="fileLocation" type="C" size="10">
+            <default value="set"/>
+        </field>
         <field name="filesetID" type="I">
             <default value="0"/>
             <unsigned/>
         </field>
+        <field name="filefolderID" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+        <field name="fileUploadedIDs" type="X"></field>
 
         <field name="lightboxCaption" type="C" size="20"></field>
 
@@ -67,6 +77,26 @@
             <unsigned/>
         </field>
 
+    </table>
+    <table name="btSimpleGalleryFileManagerEntries">
+        <field name="id" type="I">
+            <unsigned/>
+            <autoincrement/>
+            <key/>
+        </field>
+        <field name="bID" type="I">
+            <unsigned/>
+        </field>
+        <field name="fID" type="I">
+            <unsigned/>
+            <default value="0"/>
+        </field>
+        <field name="altText" type="C" />
+        <field name="ftitle" type="C" size="255" />
+        <field name="caption" type="X" />
+        <field name="copyright" type="C" size="255" />
+        <field name="showCopyright" type="I" size="1" />
+        <field name="sortOrder" type="I"/>
     </table>
 
 </schema>

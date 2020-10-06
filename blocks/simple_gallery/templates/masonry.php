@@ -1,17 +1,14 @@
 <?php defined('C5_EXECUTE') or die('Access Denied.');
-/**
- * @var array $images
- */
 $c = $controller->getCollectionObject();
 ?>
 
-<?php if (count($images)): ?>
+    <?php if (count($images)): ?>
     <div class="col-md-12 text-center">
-        <?=$title; ?>
+    <?= $title; ?>
     </div>
-    <div class="sg sg-<?php echo $bID; ?> js-sg">
-        <?php foreach ($images as $image): ?>
-            <a href="<?=(is_object($c) && $c->isEditMode())?'javascript: void(0)':$image['fullscreenUrl'];?>>"
+    <div class="sg sg-<?php echo $bID; ?> js-sg sg--masonry">
+    <?php foreach ($images as $image): ?>
+            <a href="<?= (is_object($c) && $c->isEditMode()) ? 'javascript: void(0)' : $image['fullscreenUrl']; ?>>"
                title="<?php echo h($image['caption']); ?>"
                data-effect="mfp-zoom-in"
                class="sg-item">
@@ -23,9 +20,10 @@ $c = $controller->getCollectionObject();
                     <img src="<?php echo $image['thumbnailUrl']; ?>"
                          alt="<?php echo h($image['alt']); ?>"
                          width="<?php echo $image['thumbnailWidth']; ?>"
-                         height="<?php echo $image['thumbnailHeight']; ?>"/>
+                         height="<?php echo $image['thumbnailHeight']; ?>"
+                         />
                 </div>
             </a>
-        <?php endforeach; ?>
+    <?php endforeach; ?>
     </div>
 <?php endif; ?>

@@ -1,0 +1,359 @@
+.ccm-ui .simple-gallery-form .custom-subheading {
+    margin-bottom: 20px;
+}
+
+.ccm-ui .simple-gallery-form .help-text-display-original-images {
+    display: inline-block;
+    padding-top: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .ccm-ui .simple-gallery-form .help-text-display-original-images {
+        padding-top: 28px;
+    }
+}
+
+.ccm-ui .simple-gallery-form .crop-checkbox {
+    margin-top: -10px;
+}
+
+.ccm-ui .simple-gallery-form .help-text a {
+    color: #3f9edc;
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container {
+    margin-top: 20px
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone {
+    position: relative;
+    min-height: 160px;
+    padding: 23px;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px dashed #777;
+    border-radius: 3px
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone, .ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone * {
+    box-sizing: border-box
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone.drag-hover {
+    border-color: #48b4fb;
+    background: #48b4fb
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone.drag-hover .message {
+    opacity: 0.15
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone.clickable {
+    cursor: pointer
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .message {
+    opacity: 1
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone.started .message {
+    display: block;
+    opacity: 0
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: top;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #acacac;
+    padding: 6px 6px 28px 6px;
+    margin: 17px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.16)
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview.image-preview:hover .details img {
+    display: block;
+    opacity: 0.1
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .details {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background: #ebebeb;
+    padding: 5px
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .details .filename {
+    overflow: hidden;
+    height: 100%
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .details img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .details .size {
+    position: absolute;
+    bottom: -28px;
+    left: 3px;
+    height: 28px;
+    line-height: 28px
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview.success .progress {
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview.success .success-mark {
+    display: block;
+    opacity: 1
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview.error .error-mark {
+    display: block;
+    opacity: 1
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview.error .progress .upload {
+    background: #ee1e2d
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .success-mark, .ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .error-mark {
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    text-align: center;
+    right: -10px;
+    top: -10px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .success-mark span, .ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .error-mark span {
+    display: none
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .success-mark {
+    color: #8cc657;
+    background-position: -268px -163px
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .error-mark {
+    color: #ee162d;
+    background-position: -268px -123px
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .progress {
+    position: absolute;
+    top: 100px;
+    left: 6px;
+    right: 6px;
+    height: 6px;
+    background: #d7d7d7
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .progress .upload {
+    bottom: 0;
+    background-color: #8cc657;
+    -webkit-animation: loading 0.4s linear infinite;
+    animation: loading 0.4s linear infinite;
+    transition: width 0.3s ease-in-out;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview .error-message {
+    position: absolute;
+    display: block;
+    opacity: 0;
+    top: -5px;
+    left: -20px;
+    padding: 8px 10px;
+    min-width: 140px;
+    max-width: 500px;
+    color: #800;
+    background: rgba(245, 245, 245, 0.8);
+    transition: opacity 0.3s ease-in-out
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview:hover .details img {
+    display: none
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview:hover .success-mark, .ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview:hover .error-mark {
+    display: none
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .preview:hover.error .error-message {
+    display: block;
+    opacity: 1
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .default.message {
+    opacity: 1;
+    position: absolute;
+    width: 428px;
+    height: auto;
+    margin-left: -214px;
+    margin-top: -61.5px;
+    top: 50%;
+    left: 50%;
+    transition: opacity 0.3s ease-in-out
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .default.message span {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    color: #999
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container .ccm-gallery-dnd-dropzone .default.message.square .default.message {
+    background-position: 0 -123px;
+    width: 268px;
+    margin-left: -134px;
+    height: 174px;
+    margin-top: -87px
+}
+
+.ccm-ui .simple-gallery-form .ccm-gallery-dnd-container div.ccm-gallery-dnd-errors {
+    display: none
+}
+
+.gallery-dnd-container {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px
+}
+
+.gallery-dnd-container:before, .gallery-dnd-container:after {
+    content: " ";
+    display: table
+}
+
+.gallery-dnd-container:after {
+    clear: both
+}
+
+.gallery-dnd-container .gallery-dnd-preview-container {
+    width: 92px;
+    min-height: 92px;
+    float: left
+}
+
+.gallery-dnd-container .image-popover-hover {
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: transparent;
+    width: 92px;
+    height: 92px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    cursor: pointer
+}
+
+.gallery-dnd-container .image-popover-hover:hover {
+    background: #0a5d99;
+    opacity: 0.8
+}
+
+.gallery-dnd-container .image-popover-hover:hover .glyph-container {
+    display: block
+}
+
+.gallery-dnd-container .image-popover-hover .glyph-container {
+    display: none;
+    margin: 29px 0 0 27px;
+    padding: 8px 0 0 10px;
+    background-color: #000;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px
+}
+
+.gallery-dnd-container .image-popover-hover .glyph-container i {
+    margin-left: 1px
+}
+
+.gallery-dnd-container img {
+    float: left;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px
+}
+
+.gallery-dnd-container p.image-preview {
+    display: block;
+    float: left;
+    padding: 20px 0 10px 20px
+}
+
+.ccm-gallery-dnd-im-preview-container img {
+    width: 100%
+}
+
+.ccm-gallery-dnd-im-preview-container .ccm-gallery-dnd-im-delete-hover {
+    position: absolute;
+    opacity: 0;
+    top: 5%;
+    left: 80%
+}
+
+.ccm-gallery-dnd-im-preview-container:hover .ccm-gallery-dnd-im {
+    opacity: 0.4
+}
+
+.ccm-gallery-dnd-im-preview-container:hover .ccm-gallery-dnd-im-delete-hover {
+    opacity: 1
+}
+
+.add-folder {
+    position: relative;
+    right: 32%;
+    padding: 1px 6px;
+    bottom: 1px
+}
+
+.image_edit_wrapper {
+    display: block;
+    position: absolute;
+    top: 1px;
+    right: -3px;
+    cursor: pointer;
+    padding: 0 2px;
+    width: 17px;
+    line-height: 15px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 4px
+}
+
+.image_edit_wrapper i {
+    font-size: 17px
+}
+#ccm-gallery-dnd-sortable .pre-loader {
+    width: 100%;
+    height: 96px;
+    line-height: 96px;
+    font-size: 32px;
+    background-color: #ececec;
+    border-radius: 5px;
+    text-align: center
+}

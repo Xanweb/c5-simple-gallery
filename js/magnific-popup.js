@@ -5,7 +5,6 @@ $(function() {
         var initMagnificPopup = function(e) {
 
             $('.js-sg').each(function () {
-
                 $(this).magnificPopup({
                     delegate: 'a',
                     type: 'image',
