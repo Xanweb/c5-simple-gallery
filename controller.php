@@ -4,6 +4,9 @@ namespace Concrete\Package\SimpleGallery;
 
 use Concrete\Core\Block\BlockType\BlockType;
 use Concrete\Core\Package\Package;
+use Concrete\Package\SimpleGallery\Controller\File\Properties;
+use Concrete\Package\SimpleGallery\Controller\Tools;
+use Concrete\Core\Asset\AssetList;
 
 defined('C5_EXECUTE') or die('Access Denied.');
 
